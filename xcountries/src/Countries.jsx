@@ -24,10 +24,14 @@ const Countries = () => {
     const [countries, setCountries] = useState([]);
 
     const fetchCountries = async () => {
-        const result = await fetch("https://restcountries.com/v3.1/all");
-        const data = await result.json();
-        setCountries(data);
-        return data;
+        try {
+            const result = await fetch("https://restcountries.com/v3.1/all");
+            const data = await result.json();
+            setCountries(data);
+            return data;
+        } catch (err) {
+            console.error(err);
+        }
     }
 
     useEffect(()=> {
